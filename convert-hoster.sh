@@ -1,6 +1,6 @@
 #!/bin/bash
 OUT="o_${1%%.*}.mp4"
-docker run -v /var/www/sites/ffmpeg/input:/tmp/ffmpegi -v /var/www/sites/ffmpeg/output:/tmp/ffmpego --rm  netivism/ffmpeg \
+docker run -v /var/www/sites/ffmpeg/input:/tmp/ffmpegi -v /var/www/sites/ffmpeg/output:/tmp/ffmpego --rm  netivism/ffmpeg-router \
   -stats \
   -i /tmp/ffmpegi/$1 \
   -vf 'scale=trunc(oh*a/2)*2:720' \
