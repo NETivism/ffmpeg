@@ -384,8 +384,8 @@ CMD         ["--help"]
 ENTRYPOINT  ["ffmpeg"]
 ENV         LD_LIBRARY_PATH=/usr/local/lib
 
-COPY --from=build /usr/local /usr/local/
 COPY ffmpeg-router /usr/local/bin/
+COPY --from=build /usr/local /usr/local/
 
 # Let's make sure the app built correctly
 # Convenient to verify on https://hub.docker.com/r/jrottenberg/ffmpeg/builds/ console output# ffmpeg - http://ffmpeg.org/download.html
