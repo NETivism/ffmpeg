@@ -15,6 +15,7 @@ import (
 
 // FfmpegArgs is the object to save to bolt
 type FfmpegArgs struct {
+	Cmd  string   `json:"cmd"`
 	Args []string `json:"args"`
 }
 
@@ -42,10 +43,23 @@ func Callffmpeg(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	cmd := "ffmpeg"
+	switch {
+	case fargs.Cmd == "ffprobe":
+		cmd = "ffprobe"
+		break
+	case fargs.Cmd == "qt-faststart":
+		cmd = "qt-faststart"
+		break
+	case fargs.Cmd == "ffmpeg":
+	default:
+		cmd = "ffmpeg"
+		break
+	}
 	if len(fargs.Args) > 0 {
 		args := strings.Join(fargs.Args[:], " ")
 		arga := strings.Split(args, " ")
-		cmd := exec.Command("/usr/local/bin/ffmpeg", arga...)
+		cmd := exec.Command(cmd, arga...)
 		stdoutStderr, err := cmd.CombinedOutput()
 		if err != nil {
 			w.WriteHeader(400)
