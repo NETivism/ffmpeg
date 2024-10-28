@@ -8,9 +8,10 @@ docker run -d \
   --restart=always \
   -v /var/www/sites/ffmpeg/input:/tmp/ffmpegi \
   -v /var/www/sites/ffmpeg/output:/tmp/ffmpego \
+  -v $(PWD)/docker/ffmpeg-router /usr/local/bin/ffmpeg-router \
   --entrypoint /usr/local/bin/ffmpeg-router \
   -p 127.0.0.1:32468:32468 \
-  netivism/ffmpeg-router bash
+  jrottenberg/ffmpeg:7.0.2-ubuntu2204 bash
 sleep 1
 
 bash -c "docker logs --follow ffmpeg-router 2> log/error.log" &

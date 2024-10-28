@@ -1,4 +1,5 @@
 # Originally from https://github.com/jrottenberg/ffmpeg
+# This file is for ffmpeg 7.0.2 for backup only
 #
 #
 FROM        debian:bookworm AS base
@@ -89,7 +90,7 @@ RUN      buildDeps="autoconf \
                     nasm \
                     perl \
                     pkg-config \
-                    python \
+                    python-is-python3 \
                     libssl-dev \
                     yasm \
                     zlib1g-dev" && \
